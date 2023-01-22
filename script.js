@@ -4,7 +4,6 @@ const characterText = document.getElementById('author');
 const twitterBtn = document.getElementById('twitter');
 const newQuoteBtn = document.getElementById('new-quote');
 
-
 //Show New Quote 
 function newQuote() {
     //Pick a random quote from office quotes array
