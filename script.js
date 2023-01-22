@@ -1,18 +1,26 @@
-let apiQuotes = [];
+const quoteContainer = document.getElementById('quote-container');
+const quoteText = document.getElementById('quote');
+const characterText = document.getElementById('author');
+const twitterBtn = document.getElementById('twitter');
+const newQuoteBtn = document.getElementById('new-quote');
 
-// Get Quotes from API
 
-async function getQuotes() {
-    const apiUrl = 'https://officeapi.dev/api/quotes/random';
-    try {
-        const response = await fetch(apiUrl);
-        apiQuotes = await response.json();
-        console.log(apiQuotes);
-    } catch (error) {
-        //Catch Error
-    }
+//Show New Quote 
+function newQuote() {
+    //Pick a random quote from office quotes array
+    const quote = officeQuotes[Math.floor(Math.random() * officeQuotes.length)];
+    characterText.textContent = quote.character;
+    quoteText.textContent = quote.quote;
 }
 
-//on Load
+//Tweet Quote
+function tweetQuote() {
+    const tweetUrl = `https://twitter.com/intent/tweet?text=${quoteText.textContent} - ${characterText.textContent}`;
+    window.open(tweetUrl, '_blank')
+}
 
-getQuotes();
+//Event Listeners
+newQuoteBtn.addEventListener('click', newQuote);
+twitterBtn.addEventListener('click', tweetQuote);
+
+newQuote();
